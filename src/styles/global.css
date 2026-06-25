@@ -1,1 +1,78 @@
 @import "tailwindcss";
+
+/* ------------------------------------------------------------------ *
+   REMAIA — design tokens
+   Charcoal + warm white. Blue used sparingly.
+   Display: Space Grotesk · Body: Inter · Data/labels: IBM Plex Mono
+ * ------------------------------------------------------------------ */
+@theme {
+  /* Colour ---------------------------------------------------------- */
+  --color-charcoal: #141414;        /* primary text / dark surfaces   */
+  --color-charcoal-soft: #1f1f1f;   /* secondary dark surfaces        */
+  --color-paper: #fafaf8;           /* warm white background          */
+  --color-paper-dim: #f1f0ea;       /* alt section background         */
+  --color-blue: #2390fc;            /* the logo mark — that's all     */
+  --color-accent: #1b6fc4;          /* links, buttons, focus          */
+  --color-accent-hover: #15568f;    /* accent on hover                */
+  --color-muted: #6b6b6b;           /* captions, meta, mono labels    */
+  --color-line: #e4e3dc;            /* hairlines on paper             */
+  --color-line-dark: #2e2e2e;       /* hairlines on charcoal          */
+
+  /* Type families --------------------------------------------------- */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  /* Fluid display sizes (override Tailwind defaults) ---------------- */
+  --text-3xl: clamp(1.9rem, 1.3rem + 2.6vw, 3rem);
+  --text-3xl--line-height: 1.06;
+  --text-3xl--letter-spacing: -0.02em;
+  --text-4xl: clamp(2.6rem, 1.4rem + 5vw, 5rem);
+  --text-4xl--line-height: 1.02;
+  --text-4xl--letter-spacing: -0.03em;
+  --text-5xl: clamp(3.4rem, 1.4rem + 8vw, 7rem);
+  --text-5xl--line-height: 0.98;
+  --text-5xl--letter-spacing: -0.035em;
+}
+
+/* Base layer -------------------------------------------------------- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-charcoal);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background-color: var(--color-blue);
+    color: #fff;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+
+  /* Respect reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

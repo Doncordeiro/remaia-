@@ -1,17 +1,17 @@
 ---
-
+import Base from '../layouts/Base.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base>
+  <main class="flex min-h-screen flex-col items-center justify-center gap-7 px-6 text-center">
+    <img src="/logo.svg" alt="REMAIA" class="h-16 w-16 md:h-20 md:w-20" />
+
+    <h1 class="font-display text-4xl text-charcoal">REMAIA</h1>
+
+    <div class="h-px w-12 bg-line"></div>
+
+    <p class="font-mono text-xs uppercase tracking-[0.25em] text-muted md:text-sm">
+      Engenharia &middot; Construção &middot; Maia
+    </p>
+  </main>
+</Base>
