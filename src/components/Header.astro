@@ -17,7 +17,7 @@ const locales = [
 const current = 'pt';
 ---
 
-<header class="absolute inset-x-0 top-0 z-20">
+<header class="absolute inset-x-0 top-0 z-30">
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 md:px-10">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3" aria-label="REMAIA — início">
@@ -39,8 +39,8 @@ const current = 'pt';
       }
     </nav>
 
-    <!-- Language switcher -->
-    <div class="flex items-center gap-3 font-mono text-xs" aria-label="Idioma">
+    <!-- Language switcher (desktop) -->
+    <div class="hidden items-center gap-3 font-mono text-xs md:flex" aria-label="Idioma">
       {
         locales.map((l) => (
           <a
@@ -57,5 +57,93 @@ const current = 'pt';
         ))
       }
     </div>
+
+    <!-- Hamburger (mobile) -->
+    <button
+      id="menu-open"
+      class="text-paper md:hidden"
+      aria-label="Abrir menu"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-6 w-6">
+        <path d="M3 7h18M3 12h18M3 17h18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile overlay menu -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 hidden flex-col bg-charcoal text-paper md:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu"
+  >
+    <div class="flex items-center justify-between px-6 py-5">
+      <span class="flex items-center gap-3">
+        <img src="/logo.svg" alt="" class="h-9 w-9" />
+        <span class="font-display text-lg font-bold tracking-tight text-paper">REMAIA</span>
+      </span>
+      <button id="menu-close" class="text-paper" aria-label="Fechar menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-6 w-6">
+          <path d="M5 5l14 14M19 5L5 19" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mt-6 flex flex-col px-6" aria-label="Navegação principal">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="border-b border-line-dark py-4 font-display text-2xl font-bold text-paper"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="mt-auto flex items-center gap-5 border-t border-line-dark px-6 py-6 font-mono text-sm" aria-label="Idioma">
+      {
+        locales.map((l) => (
+          <a
+            href={l.href}
+            class={
+              l.code === current
+                ? 'uppercase tracking-wide text-paper'
+                : 'uppercase tracking-wide text-paper/45'
+            }
+            aria-current={l.code === current ? 'true' : undefined}
+          >
+            {l.code}
+          </a>
+        ))
+      }
+    </div>
   </div>
 </header>
+
+<script>
+  const openBtn = document.getElementById('menu-open');
+  const closeBtn = document.getElementById('menu-close');
+  const menu = document.getElementById('mobile-menu');
+
+  function setMenu(open) {
+    if (!menu) return;
+    menu.classList.toggle('hidden', !open);
+    menu.classList.toggle('flex', open);
+    openBtn?.setAttribute('aria-expanded', String(open));
+    document.documentElement.style.overflow = open ? 'hidden' : '';
+  }
+
+  openBtn?.addEventListener('click', () => setMenu(true));
+  closeBtn?.addEventListener('click', () => setMenu(false));
+  menu?.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
+  });
+</script>
