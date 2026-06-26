@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+
+const values = [
+  { name: 'Rigor', text: 'Fazer bem à primeira. O detalhe técnico não é um extra; é o trabalho.' },
+  { name: 'Transparência', text: 'Dizer as coisas como são. Prazos, custos e imprevistos falados de frente, sem surpresas a meio da obra.' },
+  { name: 'Responsabilidade', text: 'Responder pelo que fazemos. Segurança em obra e qualidade que se confirma com o tempo.' },
+  { name: 'Proximidade', text: 'Acompanhar de perto. As mesmas pessoas, do diagnóstico à entrega.' },
+];
+---
+
+<Base
+  title="Sobre — REMAIA"
+  description="Empresa de engenharia e construção sediada na Maia. Reabilitação, construção nova e engenharia, do diagnóstico à entrega."
+>
+  <Header variant="solid" />
+
+  <main>
+    <!-- Intro -->
+    <section class="bg-paper">
+      <div class="mx-auto max-w-7xl px-6 pb-16 pt-24 md:px-10 md:pb-20 md:pt-32">
+        <p class="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-muted">Sobre</p>
+        <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight text-charcoal">
+          Engenharia e construção, sediadas na Maia.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/80">
+          Reabilitamos edifícios, construímos de raiz e resolvemos problemas técnicos de
+          engenharia. Trabalho acompanhado de perto, do primeiro diagnóstico à entrega.
+        </p>
+      </div>
+    </section>
+
+    <!-- Mission + Vision -->
+    <section class="bg-paper">
+      <div class="mx-auto max-w-7xl px-6 md:px-10">
+        <div class="grid gap-12 border-t border-line pt-16 md:grid-cols-2 md:gap-16">
+          <div>
+            <p class="mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">Missão</p>
+            <p class="font-display text-xl font-medium leading-snug text-charcoal md:text-2xl">
+              Executar reabilitação, construção e engenharia com rigor técnico, segurança e
+              transparência — e responder pelo resultado muito para além da entrega.
+            </p>
+          </div>
+          <div>
+            <p class="mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">Visão</p>
+            <p class="font-display text-xl font-medium leading-snug text-charcoal md:text-2xl">
+              Ser quem a região do Porto procura quando a obra é exigente — pela competência
+              técnica, pela palavra cumprida e por trabalho que se mantém de pé muito depois de
+              entregue.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values -->
+    <section class="bg-paper">
+      <div class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+        <p class="mb-12 font-mono text-xs uppercase tracking-[0.25em] text-muted">Valores</p>
+        <div class="grid gap-x-12 gap-y-12 md:grid-cols-2">
+          {
+            values.map((v, i) => (
+              <div class="border-t border-line pt-6">
+                <div class="flex items-baseline gap-4">
+                  <span class="font-mono text-xs text-muted">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h2 class="font-display text-xl font-bold text-charcoal">{v.name}</h2>
+                    <p class="mt-3 max-w-md text-base leading-relaxed text-muted">{v.text}</p>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

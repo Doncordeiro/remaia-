@@ -1,4 +1,9 @@
 ---
+interface Props {
+  variant?: 'overlay' | 'solid';
+}
+const { variant = 'overlay' } = Astro.props;
+
 const navItems = [
   { label: 'Projetos', href: '/projetos' },
   { label: 'Serviços', href: '/servicos' },
@@ -15,9 +20,14 @@ const locales = [
 ];
 
 const current = 'pt';
+
+const headerClass =
+  variant === 'solid'
+    ? 'relative z-30 bg-charcoal'
+    : 'absolute inset-x-0 top-0 z-30';
 ---
 
-<header class="absolute inset-x-0 top-0 z-30">
+<header class={headerClass}>
   <div class="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 md:px-10">
     <!-- Logo -->
     <a href="/" class="flex items-center gap-3" aria-label="REMAIA — início">
