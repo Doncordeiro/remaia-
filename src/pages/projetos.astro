@@ -1,0 +1,253 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import { getCollection } from 'astro:content';
+import { categoryLabel, type Lang } from '../data/taxonomies';
+
+const lang: Lang = 'pt';
+
+const projects = (await getCollection('projects')).sort(
+  (a, b) => b.data.year - a.data.year || a.data.order - b.data.order
+);
+
+// Canonical category order — keep only those present in the data
+const order = [
+  'rehabilitation',
+  'new_construction',
+  'fit_out',
+  'maintenance',
+  'engineering_services',
+  'infrastructure',
+];
+const present = order.filter((c) => projects.some((p) => p.data.category === c));
+---
+
+<Base
+  title="Projetos — REMAIA"
+  description="Obra recente de reabilitação, construção nova e engenharia. REMAIA, Maia."
+>
+  <Header variant="solid" />
+
+  <main class="bg-paper">
+    <!-- Intro -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 pb-10 pt-24 md:px-10 md:pb-12 md:pt-32">
+        <p class="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-muted">Portefólio</p>
+        <h1 class="font-display text-4xl font-bold leading-tight text-charcoal">
+          O que construímos.
+        </h1>
+      </div>
+    </section>
+
+    <!-- Filter -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 md:px-10">
+        <div
+          id="filters"
+          class="flex flex-wrap gap-x-6 gap-y-3 border-t border-line pt-6 font-mono text-xs uppercase tracking-widest"
+        >
+          <button type="button" data-filter="all" class="filter-btn border-b-2 border-accent pb-1 text-charcoal transition-colors">
+            Todos
+          </button>
+          {
+            present.map((c) => (
+              <button
+                type="button"
+                data-filter={c}
+                class="filter-btn border-b-2 border-transparent pb-1 text-muted transition-colors hover:text-charcoal"
+              >
+                {categoryLabel(c, lang)}
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 py-14 md:px-10 md:py-16">
+        <div id="grid" class="grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            projects.map((p) => (
+              <button
+                type="button"
+                class="project-card group block text-left"
+                data-category={p.data.category}
+                data-title={p.data.title}
+                data-category-label={categoryLabel(p.data.category, lang)}
+                data-meta={`${p.data.year} · ${p.data.location}${p.data.area ? ' · ' + p.data.area : ''}`}
+                data-summary={p.data.summary ?? ''}
+                data-gallery={JSON.stringify(
+                  p.data.gallery && p.data.gallery.length ? p.data.gallery : [p.data.cover]
+                )}
+              >
+                <div class="relative aspect-[4/3] overflow-hidden bg-charcoal">
+                  <img
+                    src={p.data.cover}
+                    alt={p.data.title}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <p class="mt-4 font-mono text-xs uppercase tracking-widest text-accent">
+                  {categoryLabel(p.data.category, lang)}
+                </p>
+                <h2 class="mt-2 font-display text-xl font-bold leading-snug text-charcoal">
+                  {p.data.title}
+                </h2>
+                <p class="mt-2 font-mono text-xs uppercase tracking-wide text-muted">
+                  {p.data.year} &middot; {p.data.location}
+                  {p.data.area ? ` · ${p.data.area}` : ''}
+                </p>
+              </button>
+            ))
+          }
+        </div>
+
+        <p id="empty-state" class="hidden py-16 text-center font-mono text-sm text-muted">
+          Sem projetos nesta categoria.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lightbox -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 z-50 hidden items-center justify-center p-4 md:p-10"
+    style="background: rgba(20,20,20,0.96);"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Galeria do projeto"
+  >
+    <button id="lb-close" class="absolute right-4 top-4 text-paper/70 transition-colors hover:text-paper md:right-8 md:top-8" aria-label="Fechar galeria">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-7 w-7">
+        <path d="M5 5l14 14M19 5L5 19" stroke-linecap="round" />
+      </svg>
+    </button>
+
+    <button id="lb-prev" class="absolute left-3 top-1/2 -translate-y-1/2 text-paper/60 transition-colors hover:text-paper md:left-6" aria-label="Imagem anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-9 w-9">
+        <path d="M15 5l-7 7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <button id="lb-next" class="absolute right-3 top-1/2 -translate-y-1/2 text-paper/60 transition-colors hover:text-paper md:right-6" aria-label="Imagem seguinte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-9 w-9">
+        <path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+
+    <figure class="flex max-h-full w-full max-w-5xl flex-col items-center">
+      <img id="lb-img" src="" alt="" class="max-h-[72vh] w-auto max-w-full object-contain" />
+      <figcaption class="mt-5 w-full max-w-2xl text-center">
+        <p id="lb-cat" class="font-mono text-xs uppercase tracking-widest text-accent"></p>
+        <h3 id="lb-title" class="mt-2 font-display text-xl font-bold text-paper"></h3>
+        <p id="lb-meta" class="mt-2 font-mono text-xs uppercase tracking-wide text-paper/50"></p>
+        <p id="lb-summary" class="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-paper/75"></p>
+        <p id="lb-counter" class="mt-4 font-mono text-xs text-paper/40"></p>
+      </figcaption>
+    </figure>
+  </div>
+
+  <script>
+    // ---- Category filter ----
+    const filterBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('.filter-btn'));
+    const cards = Array.from(document.querySelectorAll<HTMLButtonElement>('.project-card'));
+    const emptyState = document.getElementById('empty-state');
+
+    function setFilter(value: string) {
+      filterBtns.forEach((b) => {
+        const active = b.dataset.filter === value;
+        b.classList.toggle('text-charcoal', active);
+        b.classList.toggle('border-accent', active);
+        b.classList.toggle('text-muted', !active);
+        b.classList.toggle('border-transparent', !active);
+      });
+      let visible = 0;
+      cards.forEach((c) => {
+        const show = value === 'all' || c.dataset.category === value;
+        c.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      emptyState?.classList.toggle('hidden', visible !== 0);
+    }
+
+    filterBtns.forEach((b) =>
+      b.addEventListener('click', () => setFilter(b.dataset.filter || 'all'))
+    );
+
+    // ---- Lightbox ----
+    const lightbox = document.getElementById('lightbox')!;
+    const lbImg = document.getElementById('lb-img') as HTMLImageElement;
+    const lbCat = document.getElementById('lb-cat')!;
+    const lbTitle = document.getElementById('lb-title')!;
+    const lbMeta = document.getElementById('lb-meta')!;
+    const lbSummary = document.getElementById('lb-summary')!;
+    const lbCounter = document.getElementById('lb-counter')!;
+    const lbClose = document.getElementById('lb-close')!;
+    const lbPrev = document.getElementById('lb-prev')!;
+    const lbNext = document.getElementById('lb-next')!;
+
+    let gallery: string[] = [];
+    let index = 0;
+    let lastFocused: HTMLElement | null = null;
+
+    function renderImage() {
+      lbImg.src = gallery[index];
+      const single = gallery.length <= 1;
+      lbPrev.classList.toggle('hidden', single);
+      lbNext.classList.toggle('hidden', single);
+      lbCounter.textContent = single ? '' : `${index + 1} / ${gallery.length}`;
+    }
+
+    function openLightbox(card: HTMLButtonElement) {
+      try {
+        gallery = JSON.parse(card.dataset.gallery || '[]');
+      } catch {
+        gallery = [];
+      }
+      if (!gallery.length) return;
+      index = 0;
+      lbCat.textContent = card.dataset.categoryLabel || '';
+      lbTitle.textContent = card.dataset.title || '';
+      lbMeta.textContent = card.dataset.meta || '';
+      lbSummary.textContent = card.dataset.summary || '';
+      lbImg.alt = card.dataset.title || '';
+      renderImage();
+      lastFocused = document.activeElement as HTMLElement;
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      document.documentElement.style.overflow = 'hidden';
+      (lbClose as HTMLButtonElement).focus();
+    }
+
+    function closeLightbox() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.documentElement.style.overflow = '';
+      lastFocused?.focus();
+    }
+
+    function step(delta: number) {
+      if (gallery.length <= 1) return;
+      index = (index + delta + gallery.length) % gallery.length;
+      renderImage();
+    }
+
+    cards.forEach((c) => c.addEventListener('click', () => openLightbox(c)));
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', () => step(-1));
+    lbNext.addEventListener('click', () => step(1));
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.classList.contains('hidden')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+  </script>
+</Base>
