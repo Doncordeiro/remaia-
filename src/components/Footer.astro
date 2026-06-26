@@ -1,0 +1,70 @@
+---
+const navItems = [
+  { label: 'Projetos', href: '/projetos' },
+  { label: 'Serviços', href: '/servicos' },
+  { label: 'Sobre', href: '/sobre' },
+  { label: 'Contacto', href: '/contacto' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-charcoal text-paper">
+  <div class="mx-auto max-w-7xl px-6 py-16 md:px-10 md:py-20">
+    <div class="grid gap-12 md:grid-cols-12">
+      <!-- Brand -->
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <img src="/logo.svg" alt="" class="h-9 w-9" />
+          <span class="font-display text-lg font-bold tracking-tight">REMAIA</span>
+        </div>
+        <p class="mt-5 max-w-xs text-sm leading-relaxed text-paper/60">
+          Engenharia e construção. Reabilitação, construção nova e manutenção, do diagnóstico à entrega.
+        </p>
+      </div>
+
+      <!-- Nav -->
+      <nav class="md:col-span-3" aria-label="Rodapé">
+        <p class="mb-4 font-mono text-xs uppercase tracking-widest text-paper/40">Navegação</p>
+        <ul class="space-y-2">
+          {
+            navItems.map((i) => (
+              <li>
+                <a href={i.href} class="text-sm text-paper/80 transition-colors hover:text-paper">
+                  {i.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <!-- Contact (PLACEHOLDER — replace with real details) -->
+      <div class="md:col-span-4">
+        <p class="mb-4 font-mono text-xs uppercase tracking-widest text-paper/40">Contacto</p>
+        <ul class="space-y-2 text-sm text-paper/80">
+          <li class="text-paper/80">Rua Exemplo, 000<br />4470-000 Maia, Portugal</li>
+          <li><a href="mailto:geral@remaia.pt" class="transition-colors hover:text-paper">geral@remaia.pt</a></li>
+          <li><a href="tel:+351000000000" class="transition-colors hover:text-paper">+351 000 000 000</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-16 flex flex-col gap-4 border-t border-line-dark pt-6 font-mono text-xs text-paper/40 md:flex-row md:items-center md:justify-between">
+      <p>&copy; {year} REMAIA. Todos os direitos reservados.</p>
+      <div class="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <a href="/privacidade" class="transition-colors hover:text-paper/70">Política de Privacidade</a>
+        <a
+          href="https://www.livroreclamacoes.pt/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="transition-colors hover:text-paper/70"
+        >
+          Livro de Reclamações
+        </a>
+        <span>41.23&deg;N &middot; 8.62&deg;W</span>
+      </div>
+    </div>
+  </div>
+</footer>
