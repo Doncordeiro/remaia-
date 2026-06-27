@@ -1,0 +1,80 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+
+const mapUrl = 'https://goo.gl/maps/bGRgnxh8YVaaubYPA';
+---
+
+<Base
+  title="Contacto — REMAIA"
+  description="Fale com a REMAIA. Rua do Xisto, 712, Maia. geral@remaia.pt · +351 960 006 063."
+>
+  <Header variant="solid" />
+
+  <main class="bg-paper">
+    <!-- Intro -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 pb-16 pt-24 md:px-10 md:pb-20 md:pt-32">
+        <p class="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-muted">Contacto</p>
+        <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight text-charcoal">
+          Vamos falar.
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/80">
+          Uma obra, uma dúvida técnica ou um pedido de orçamento — fale connosco diretamente.
+          Respondemos a todos os contactos.
+        </p>
+      </div>
+    </section>
+
+    <!-- Details -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 pb-24 md:px-10 md:pb-32">
+        <div class="grid gap-12 border-t border-line pt-16 md:grid-cols-2 md:gap-16">
+          <!-- Write to us -->
+          <div>
+            <p class="mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">Escreva-nos</p>
+            <a
+              href="mailto:geral@remaia.pt"
+              class="font-display text-2xl font-bold leading-snug text-charcoal underline-offset-4 transition-colors hover:text-accent hover:underline md:text-3xl"
+            >
+              geral@remaia.pt
+            </a>
+
+            <p class="mt-10 mb-4 font-mono text-xs uppercase tracking-[0.25em] text-accent">Telefone</p>
+            <ul class="space-y-2 text-lg text-charcoal">
+              <li>
+                <a href="tel:+351960006063" class="underline-offset-4 transition-colors hover:text-accent hover:underline">
+                  +351 960 006 063
+                </a>
+              </li>
+              <li>
+                <a href="tel:+351229426580" class="underline-offset-4 transition-colors hover:text-accent hover:underline">
+                  +351 229 426 580
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Visit us -->
+          <div>
+            <p class="mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">Morada</p>
+            <p class="text-lg leading-relaxed text-charcoal">
+              Rua do Xisto, 712<br />
+              4470-389 Maia<br />
+              Portugal
+            </p>
+            <a
+              href={mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline"
+            >
+              Ver no mapa
+              <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
