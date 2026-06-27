@@ -14,7 +14,7 @@ const mapUrl = 'https://goo.gl/maps/bGRgnxh8YVaaubYPA';
   <main class="bg-paper">
     <!-- Intro -->
     <section>
-      <div class="mx-auto max-w-7xl px-6 pb-16 pt-24 md:px-10 md:pb-20 md:pt-32">
+      <div class="mx-auto max-w-7xl px-6 pb-12 pt-24 md:px-10 md:pb-16 md:pt-28">
         <p class="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-muted">Contacto</p>
         <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight text-charcoal">
           Vamos falar.
@@ -26,50 +26,63 @@ const mapUrl = 'https://goo.gl/maps/bGRgnxh8YVaaubYPA';
       </div>
     </section>
 
-    <!-- Details -->
+    <!-- Contact panel -->
     <section>
       <div class="mx-auto max-w-7xl px-6 pb-24 md:px-10 md:pb-32">
-        <div class="grid gap-12 border-t border-line pt-16 md:grid-cols-2 md:gap-16">
-          <!-- Write to us -->
-          <div>
-            <p class="mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">Escreva-nos</p>
+        <div class="grid overflow-hidden bg-charcoal text-paper md:grid-cols-2">
+          <!-- Details -->
+          <div class="border-line-dark p-8 md:border-r md:p-12">
+            <p class="font-mono text-xs uppercase tracking-[0.25em] text-paper/40">Escreva-nos</p>
             <a
               href="mailto:geral@remaia.pt"
-              class="font-display text-2xl font-bold leading-snug text-charcoal underline-offset-4 transition-colors hover:text-accent hover:underline md:text-3xl"
+              class="mt-3 inline-block font-display text-2xl font-bold leading-snug text-paper transition-colors hover:text-blue md:text-[1.75rem]"
             >
               geral@remaia.pt
             </a>
 
-            <p class="mt-10 mb-4 font-mono text-xs uppercase tracking-[0.25em] text-accent">Telefone</p>
-            <ul class="space-y-2 text-lg text-charcoal">
-              <li>
-                <a href="tel:+351960006063" class="underline-offset-4 transition-colors hover:text-accent hover:underline">
-                  +351 960 006 063
-                </a>
-              </li>
-              <li>
-                <a href="tel:+351229426580" class="underline-offset-4 transition-colors hover:text-accent hover:underline">
-                  +351 229 426 580
-                </a>
-              </li>
+            <p class="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-paper/40">Telefone</p>
+            <ul class="mt-3 space-y-1.5 text-lg text-paper/90">
+              <li><a href="tel:+351960006063" class="transition-colors hover:text-blue">+351 960 006 063</a></li>
+              <li><a href="tel:+351229426580" class="transition-colors hover:text-blue">+351 229 426 580</a></li>
             </ul>
+
+            <p class="mt-10 font-mono text-xs uppercase tracking-[0.25em] text-paper/40">Morada</p>
+            <p class="mt-3 text-lg leading-relaxed text-paper/70">
+              Rua do Xisto, 712<br />
+              4470-389 Maia, Portugal
+            </p>
           </div>
 
-          <!-- Visit us -->
-          <div>
-            <p class="mb-5 font-mono text-xs uppercase tracking-[0.25em] text-accent">Morada</p>
-            <p class="text-lg leading-relaxed text-charcoal">
-              Rua do Xisto, 712<br />
-              4470-389 Maia<br />
-              Portugal
-            </p>
+          <!-- Locator (site-plan style) -->
+          <div
+            class="relative flex min-h-[340px] flex-col justify-between p-8 md:p-10"
+            style="background-color:#181816; background-image: linear-gradient(#262624 1px, transparent 1px), linear-gradient(90deg, #262624 1px, transparent 1px); background-size: 32px 32px;"
+          >
+            <!-- blue corner tick -->
+            <div class="absolute left-6 top-6 h-8 w-8 border-l-2 border-t-2 border-blue"></div>
+
+            <!-- center marker + coordinates -->
+            <div class="flex flex-1 flex-col items-center justify-center text-center">
+              <svg viewBox="0 0 64 64" class="h-14 w-14 text-paper/45" fill="none" stroke="currentColor" stroke-width="1.25">
+                <circle cx="32" cy="32" r="9" />
+                <line x1="32" y1="3" x2="32" y2="18" stroke-linecap="round" />
+                <line x1="32" y1="46" x2="32" y2="61" stroke-linecap="round" />
+                <line x1="3" y1="32" x2="18" y2="32" stroke-linecap="round" />
+                <line x1="46" y1="32" x2="61" y2="32" stroke-linecap="round" />
+                <circle cx="32" cy="32" r="1.75" fill="currentColor" stroke="none" />
+              </svg>
+              <p class="mt-5 font-mono text-sm tracking-wide text-paper">41.23&deg;N &middot; 8.62&deg;W</p>
+              <p class="mt-1 font-mono text-xs uppercase tracking-[0.25em] text-paper/45">Maia &middot; Portugal</p>
+            </div>
+
+            <!-- map link -->
             <a
               href={mapUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="group mt-5 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent underline-offset-4 transition-colors hover:text-accent-hover hover:underline"
+              class="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-paper/70 transition-colors hover:text-paper"
             >
-              Ver no mapa
+              Abrir no Google Maps
               <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
             </a>
           </div>
