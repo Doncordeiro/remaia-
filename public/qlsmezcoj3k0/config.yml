@@ -1,12 +1,11 @@
 # ── Backend ──────────────────────────────────────────────────────────
 # Commits go straight to your repo, exactly like a git push.
-# `base_url` points at the OAuth handler we deploy in Step 3 — it's a
-# placeholder for now, so login won't work yet (that's expected).
+# `base_url` is the Cloudflare Worker that handles GitHub login.
 backend:
   name: github
   repo: Doncordeiro/remaia-
   branch: main
-  base_url: https://CHANGE-ME-IN-STEP-3.workers.dev
+  base_url: https://remaia-cms-auth.doncordeiro.workers.dev
   auth_endpoint: /auth
 
 # Uploaded images land in public/projects and are referenced as /projects/...
