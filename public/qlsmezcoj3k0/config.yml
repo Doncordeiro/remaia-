@@ -1,0 +1,82 @@
+# ── Backend ──────────────────────────────────────────────────────────
+# Commits go straight to your repo, exactly like a git push.
+# `base_url` points at the OAuth handler we deploy in Step 3 — it's a
+# placeholder for now, so login won't work yet (that's expected).
+backend:
+  name: github
+  repo: Doncordeiro/remaia-
+  branch: main
+  base_url: https://CHANGE-ME-IN-STEP-3.workers.dev
+  auth_endpoint: /auth
+
+# Uploaded images land in public/projects and are referenced as /projects/...
+media_folder: "public/projects"
+public_folder: "/projects"
+
+# Interface language
+locale: "pt"
+
+# ── Collections ──────────────────────────────────────────────────────
+collections:
+  - name: "projects"
+    label: "Projetos"
+    label_singular: "Projeto"
+    description: "Obras a mostrar no portefólio e na página inicial."
+    folder: "src/content/projects"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "yaml-frontmatter"
+    summary: "{{title}} · {{year}}"
+    sortable_fields: ["order", "year", "title"]
+    fields:
+      - { name: "title", label: "Título", widget: "string" }
+
+      - name: "category"
+        label: "Categoria"
+        widget: "select"
+        options:
+          - { label: "Reabilitação", value: "rehabilitation" }
+          - { label: "Construção nova", value: "new_construction" }
+          - { label: "Remodelação interior", value: "fit_out" }
+          - { label: "Manutenção", value: "maintenance" }
+          - { label: "Engenharia", value: "engineering_services" }
+          - { label: "Infraestruturas", value: "infrastructure" }
+
+      - name: "services"
+        label: "Serviços"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "Reabilitação e restauro", value: "rehab_restoration" }
+          - { label: "Remodelação de espaços", value: "space_adaptation" }
+          - { label: "Manutenção", value: "maintenance" }
+          - { label: "Arranjos exteriores", value: "exteriors" }
+          - { label: "Carpintaria e serralharia", value: "carpentry_metalwork" }
+          - { label: "Construção «chave na mão»", value: "turnkey" }
+          - { label: "Infraestruturas", value: "infrastructure" }
+          - { label: "Diagnóstico de patologias", value: "pathology_diagnosis" }
+          - { label: "Gestão de obra", value: "construction_management" }
+          - { label: "Projetos de engenharia", value: "engineering_projects" }
+          - { label: "Consultoria", value: "consulting" }
+          - { label: "Fiscalização", value: "inspection" }
+
+      - { name: "year", label: "Ano", widget: "number", value_type: "int", min: 1990, max: 2100 }
+      - { name: "location", label: "Localidade", widget: "string", hint: "ex: Maia, Porto…" }
+      - { name: "area", label: "Área", widget: "string", required: false, hint: "ex: 1.240 m²" }
+      - { name: "client", label: "Cliente", widget: "string", required: false, hint: "Deixar em branco se não autorizado." }
+
+      - { name: "cover", label: "Imagem de capa", widget: "image", hint: "Foto principal mostrada na grelha." }
+
+      - name: "gallery"
+        label: "Galeria"
+        widget: "list"
+        required: false
+        summary: "{{image}}"
+        field: { name: "image", label: "Imagem", widget: "image" }
+
+      - { name: "summary", label: "Descrição", widget: "text", required: false, hint: "Uma ou duas frases, mostradas na galeria." }
+      - { name: "featured", label: "Destaque na página inicial", widget: "boolean", default: false }
+      - { name: "order", label: "Ordem", widget: "number", value_type: "int", default: 0, hint: "Mais baixo aparece primeiro." }
