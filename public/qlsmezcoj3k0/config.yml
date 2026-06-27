@@ -13,7 +13,7 @@ media_folder: "public/projects"
 public_folder: "/projects"
 
 # Interface language
-locale: "pt"
+locale: "en"
 
 # ── Collections ──────────────────────────────────────────────────────
 collections:
