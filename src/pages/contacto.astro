@@ -3,6 +3,9 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 
 const mapUrl = 'https://goo.gl/maps/bGRgnxh8YVaaubYPA';
+// Non-interactive embedded map, centered on the address (no API key needed)
+const mapEmbed =
+  'https://maps.google.com/maps?q=Rua%20do%20Xisto%20712%2C%204470-389%20Maia&z=16&hl=pt&output=embed';
 ---
 
 <Base
@@ -53,38 +56,56 @@ const mapUrl = 'https://goo.gl/maps/bGRgnxh8YVaaubYPA';
             </p>
           </div>
 
-          <!-- Locator (site-plan style) -->
-          <div
-            class="relative flex min-h-[340px] flex-col justify-between p-8 md:p-10"
-            style="background-color:#181816; background-image: linear-gradient(#262624 1px, transparent 1px), linear-gradient(90deg, #262624 1px, transparent 1px); background-size: 32px 32px;"
-          >
-            <!-- blue corner tick -->
-            <div class="absolute left-6 top-6 h-8 w-8 border-l-2 border-t-2 border-blue"></div>
+          <!-- Locator: real map beneath, crosshair on top -->
+          <div class="relative min-h-[340px] overflow-hidden bg-charcoal">
+            <!-- Map (desaturated + dark-toned, non-interactive) -->
+            <iframe
+              src={mapEmbed}
+              title="Localização da REMAIA — Rua do Xisto, 712, Maia"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              class="absolute inset-0 h-full w-full border-0"
+              style="filter: grayscale(1) invert(0.9) brightness(0.95) contrast(0.92); pointer-events: none;"
+            ></iframe>
 
-            <!-- center marker + coordinates -->
-            <div class="flex flex-1 flex-col items-center justify-center text-center">
-              <svg viewBox="0 0 64 64" class="h-14 w-14 text-paper/45" fill="none" stroke="currentColor" stroke-width="1.25">
-                <circle cx="32" cy="32" r="9" />
-                <line x1="32" y1="3" x2="32" y2="18" stroke-linecap="round" />
-                <line x1="32" y1="46" x2="32" y2="61" stroke-linecap="round" />
-                <line x1="3" y1="32" x2="18" y2="32" stroke-linecap="round" />
-                <line x1="46" y1="32" x2="61" y2="32" stroke-linecap="round" />
-                <circle cx="32" cy="32" r="1.75" fill="currentColor" stroke="none" />
-              </svg>
-              <p class="mt-5 font-mono text-sm tracking-wide text-paper">41.23&deg;N &middot; 8.62&deg;W</p>
-              <p class="mt-1 font-mono text-xs uppercase tracking-[0.25em] text-paper/45">Maia &middot; Portugal</p>
+            <!-- Overlay: corner tick + crosshair (non-interactive) -->
+            <div class="pointer-events-none absolute inset-0">
+              <div class="absolute left-6 top-6 h-8 w-8 border-l-2 border-t-2 border-blue"></div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg
+                  viewBox="0 0 64 64"
+                  class="h-14 w-14 text-paper"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.25"
+                  style="filter: drop-shadow(0 0 4px rgba(0,0,0,0.85));"
+                >
+                  <circle cx="32" cy="32" r="9" />
+                  <line x1="32" y1="3" x2="32" y2="18" stroke-linecap="round" />
+                  <line x1="32" y1="46" x2="32" y2="61" stroke-linecap="round" />
+                  <line x1="3" y1="32" x2="18" y2="32" stroke-linecap="round" />
+                  <line x1="46" y1="32" x2="61" y2="32" stroke-linecap="round" />
+                  <circle cx="32" cy="32" r="1.75" fill="currentColor" stroke="none" />
+                </svg>
+              </div>
             </div>
 
-            <!-- map link -->
-            <a
-              href={mapUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-paper/70 transition-colors hover:text-paper"
+            <!-- Bottom bar: coordinates + map link (clickable) -->
+            <div
+              class="absolute inset-x-0 bottom-0 flex items-center justify-between gap-4 px-6 py-5"
+              style="background: linear-gradient(to top, rgba(20,20,20,0.92) 0%, rgba(20,20,20,0) 100%);"
             >
-              Abrir no Google Maps
-              <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
-            </a>
+              <span class="font-mono text-xs tracking-wide text-paper/80">41.23&deg;N &middot; 8.62&deg;W</span>
+              <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-paper/80 transition-colors hover:text-paper"
+              >
+                Abrir no Google Maps
+                <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
