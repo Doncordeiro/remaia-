@@ -1,0 +1,67 @@
+---
+// Homepage — "Método" strip. Breaks the "do diagnóstico à entrega"
+// positioning into four concrete phases. Reinforces the single-team
+// accountability that sets REMAIA apart from a generic builder.
+const steps = [
+  {
+    n: '01',
+    title: 'Diagnóstico',
+    desc: 'Avaliamos o estado real da obra antes de propor qualquer solução.',
+  },
+  {
+    n: '02',
+    title: 'Projeto',
+    desc: 'Desenhamos a intervenção com rigor técnico e orçamento claro.',
+  },
+  {
+    n: '03',
+    title: 'Execução',
+    desc: 'Construímos com equipa própria e acompanhamento contínuo.',
+  },
+  {
+    n: '04',
+    title: 'Entrega',
+    desc: 'Entregamos a obra concluída, testada e pronta a usar.',
+  },
+];
+---
+
+<section class="bg-paper-dim">
+  <div class="mx-auto max-w-7xl px-6 py-24 md:px-10 md:py-32">
+    <p class="mb-10 font-mono text-xs uppercase tracking-[0.25em] text-muted">
+      Método
+    </p>
+
+    <div class="grid gap-x-10 gap-y-6 md:grid-cols-12">
+      <h2 class="font-display text-3xl font-bold leading-tight text-charcoal md:col-span-5">
+        Quatro fases, uma equipa.
+      </h2>
+      <p class="text-base leading-relaxed text-muted md:col-span-5 md:col-start-8 md:pt-2">
+        A mesma equipa acompanha cada obra do início ao fim — sem subcontratar a
+        responsabilidade técnica.
+      </p>
+    </div>
+
+    <ol class="mt-16 grid gap-x-8 gap-y-10 sm:grid-cols-2 md:mt-20 md:grid-cols-4">
+      {
+        steps.map((s, i) => (
+          <li class="relative border-t border-line pt-6">
+            {i < steps.length - 1 && (
+              <span
+                aria-hidden="true"
+                class="absolute -right-[1.15rem] top-6 hidden font-mono text-sm text-muted md:block"
+              >
+                &rarr;
+              </span>
+            )}
+            <span class="font-mono text-xs tracking-widest text-accent">{s.n}</span>
+            <h3 class="mt-3 font-display text-xl font-bold leading-snug text-charcoal">
+              {s.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{s.desc}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
