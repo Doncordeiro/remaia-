@@ -1,0 +1,235 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+
+// ── Privacy policy ──────────────────────────────────────────────────
+// RGPD-aligned starting point. Reflects the site as it stands today
+// (contact by email/phone; no forms, analytics or marketing cookies yet).
+// PLACEHOLDERS the client must confirm before this is final:
+//   • NIPC (company tax number)
+//   • Exact data-retention periods, if they want them stated
+// Revisit when the leads form / analytics are added — both change what
+// data is collected and may require a cookie-consent banner.
+const updated = 'Junho de 2026';
+---
+
+<Base
+  title="Política de Privacidade — REMAIA"
+  description="Como a REMAIA, Engenharia da Reabilitação, Lda. trata e protege os seus dados pessoais, ao abrigo do RGPD."
+>
+  <Header variant="solid" />
+
+  <main class="bg-paper">
+    <!-- Intro -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 pb-12 pt-24 md:px-10 md:pb-16 md:pt-32">
+        <p class="mb-6 font-mono text-xs uppercase tracking-[0.25em] text-muted">Legal</p>
+        <h1 class="max-w-3xl font-display text-4xl font-bold leading-tight text-charcoal">
+          Política de Privacidade
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-charcoal/80">
+          A REMAIA respeita a sua privacidade. Esta política explica que dados pessoais
+          recolhemos, para que os usamos e quais os seus direitos, nos termos do Regulamento
+          Geral sobre a Proteção de Dados (RGPD).
+        </p>
+        <p class="mt-8 font-mono text-xs uppercase tracking-widest text-muted">
+          Última atualização &middot; {updated}
+        </p>
+      </div>
+    </section>
+
+    <!-- Body -->
+    <section>
+      <div class="mx-auto max-w-7xl px-6 pb-24 md:px-10 md:pb-32">
+        <div class="max-w-3xl space-y-12">
+          <!-- 01 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">01</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">
+                Responsável pelo tratamento
+              </h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                O responsável pelo tratamento dos seus dados é a
+                <strong class="font-semibold text-charcoal">REMAIA, Engenharia da Reabilitação, Lda.</strong>,
+                com sede na Rua do Xisto, 712, 4470-389 Maia, Portugal.
+              </p>
+              <p>
+                Contacto:
+                <a href="mailto:geral@remaia.pt" class="text-accent underline-offset-2 hover:underline">geral@remaia.pt</a>
+                &middot; +351 960 006 063.
+              </p>
+            </div>
+          </div>
+
+          <!-- 02 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">02</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Que dados recolhemos</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                <strong class="font-semibold text-charcoal">Dados que nos fornece.</strong>
+                Quando entra em contacto connosco — por email ou telefone — recolhemos os dados
+                que decide partilhar: nome, contactos e o conteúdo da mensagem ou do pedido.
+              </p>
+              <p>
+                <strong class="font-semibold text-charcoal">Dados técnicos.</strong>
+                Por motivos de segurança e funcionamento, o nosso fornecedor de alojamento regista
+                dados técnicos como o endereço IP e informação básica do navegador. Não usamos
+                estes dados para o identificar individualmente.
+              </p>
+            </div>
+          </div>
+
+          <!-- 03 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">03</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Para que usamos os dados</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>Tratamos os seus dados apenas para:</p>
+              <ul class="space-y-2">
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Responder a pedidos de contacto, orçamento ou informação;</span>
+                </li>
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Prestar e acompanhar os serviços contratados;</span>
+                </li>
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Cumprir obrigações legais (por exemplo, fiscais e contabilísticas);</span>
+                </li>
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Garantir a segurança e o bom funcionamento do site.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 04 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">04</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Fundamento jurídico</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                Conforme a situação, o tratamento assenta no seu consentimento, na execução de
+                diligências pré-contratuais e do contrato, no cumprimento de obrigações legais a
+                que estamos sujeitos, ou no nosso interesse legítimo em responder-lhe e em manter
+                o site seguro.
+              </p>
+            </div>
+          </div>
+
+          <!-- 05 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">05</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Durante quanto tempo</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                Conservamos os dados apenas pelo tempo necessário às finalidades acima e pelos
+                prazos legais aplicáveis. Mensagens de contacto que não dão origem a uma relação
+                comercial são eliminadas quando deixam de ser necessárias.
+              </p>
+            </div>
+          </div>
+
+          <!-- 06 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">06</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Com quem partilhamos</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                Não vendemos os seus dados. Podemos recorrer a prestadores de serviços que atuam
+                em nosso nome — nomeadamente de alojamento e de email — sujeitos a obrigações de
+                confidencialidade e segurança. Alguns destes prestadores podem tratar dados fora
+                do Espaço Económico Europeu, sempre ao abrigo das garantias previstas no RGPD.
+              </p>
+              <p>
+                Poderemos ainda partilhar dados quando tal for exigido por lei ou por autoridade
+                competente.
+              </p>
+            </div>
+          </div>
+
+          <!-- 07 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">07</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Cookies</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                Este site utiliza apenas cookies técnicos, essenciais à segurança e ao
+                funcionamento das páginas, definidos pelo nosso fornecedor de alojamento. Não
+                usamos cookies de publicidade nem de rastreio.
+              </p>
+            </div>
+          </div>
+
+          <!-- 08 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">08</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Os seus direitos</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>Nos termos do RGPD, tem direito a:</p>
+              <ul class="space-y-2">
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Aceder aos seus dados e solicitar a sua retificação ou apagamento;</span>
+                </li>
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Limitar ou opor-se a determinados tratamentos;</span>
+                </li>
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Solicitar a portabilidade dos dados que nos forneceu;</span>
+                </li>
+                <li class="flex gap-3">
+                  <span aria-hidden="true" class="font-mono text-accent">—</span>
+                  <span>Retirar o consentimento a qualquer momento, sem afetar tratamentos anteriores.</span>
+                </li>
+              </ul>
+              <p>
+                Para exercer estes direitos, contacte
+                <a href="mailto:geral@remaia.pt" class="text-accent underline-offset-2 hover:underline">geral@remaia.pt</a>.
+                Tem também o direito de apresentar reclamação à autoridade de controlo, a Comissão
+                Nacional de Proteção de Dados (<a href="https://www.cnpd.pt" target="_blank" rel="noopener" class="text-accent underline-offset-2 hover:underline">cnpd.pt</a>).
+              </p>
+            </div>
+          </div>
+
+          <!-- 09 -->
+          <div class="border-t border-line pt-8">
+            <div class="flex items-baseline gap-4">
+              <span class="font-mono text-xs text-accent">09</span>
+              <h2 class="font-display text-xl font-bold text-charcoal">Alterações a esta política</h2>
+            </div>
+            <div class="mt-4 space-y-3 text-base leading-relaxed text-charcoal/80 md:pl-9">
+              <p>
+                Podemos atualizar esta política sempre que necessário. A versão em vigor é a
+                publicada nesta página, com a respetiva data de atualização.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
